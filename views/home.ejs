@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title><%= title %></title>
+
+</head>
+<body>
+        <h1 style="text-align: center;">Home page</h1>
+        <form method="post" action="/insertEmployee">
+            <table border="1" align="center">
+                <tr>
+                    <td>Enter name</td>
+                    <td><input type="text" name="name" /></td>
+                </tr>
+
+                <tr>
+                    <td>Enter Age</td>
+                    <td><input type="text" name="age" /></td>
+                </tr>
+
+                <tr>
+                    <td>select gender</td>
+                    <td>
+                        <input type="radio" name="gender" value="male" />Male
+                        <input type="radio" name="gender" value="female" />Female
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Select hobby </td>
+                    <td>
+                        <input type="checkbox" name="hobby" value="Adventure">Adventure
+                        <input type="checkbox" name="hobby" value="Cycling">Cycling
+                        <input type="checkbox" name="hobby" value="Music">Music
+                    </td>
+                </tr>
+
+                <% var city = ["Surat","Rajkot","Vadodara"] %>
+                <tr>
+                    <td>Select City</td>
+                    <td>
+                        <select name="city">
+                            <option value="">-select city-</option>
+                            <% city.map((v,i)=>{ %>
+                                <option value="<%= v %>"><%= v %></option>
+                            <% }) %>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td><input type="submit" name="submit" /></td>
+                </tr>
+            </table>
+        </form>
+        <br/><br/>
+        <table border="1" align="center">
+            <tr>
+                <td>Name</td>
+                <td>Age</td>
+                <td>Gender</td>
+                <td>hobby</td>
+                <td>city</td>
+                <td>Actions</td>
+            </tr>
+            <% for(var e of employee){ %>
+            <tr>
+                <td><%= e.name %></td>
+                <td><%= e.age %></td>
+                <td><%= e.gender %></td>
+                <td><%= e.hobby %></td>
+                <td><%= e.city %></td>
+                <td>
+                    <a href="/deleteEmp/?id=<%= e.id %>">X</a> ||
+                    <a href="/editEmp/?id=<%= e.id %>">Edit</a>
+                </td>
+            </tr>
+            <% } %>
+        </table>
+</body>
+</html>
